@@ -3,7 +3,7 @@ var startScreen = document.querySelector("#start-screen");
 var startButton = document.querySelector("#start");
 var choices = document.querySelector("#choices");
 var timeSpan = document.querySelector("#time");
-
+var endScreen = document.querySelector("#end-screen");
 var currentQuestionIndex = 0;
 
 var timer=0;
@@ -45,8 +45,14 @@ function handleClick(){
         getQuestions();
     }else{
         alert('Game Over');
+        gameOver();
     }
     
+}
+
+function gameOver(){
+    questionsdiv.setAttribute("class","hide");
+    endScreen.setAttribute("class","start");
 }
 
 //() avoids having the function executed on pageLoad
