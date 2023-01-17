@@ -21,7 +21,7 @@ var questions =  [
                     "2. Java Scripting",
                     "3. Java Script", 
                     "4. Jester Scieper"],
-        answer : "2. Java Script"
+        answer : "3. Java Script"
     },
     {
         question: "Is JavaScript a case-sensitive language",

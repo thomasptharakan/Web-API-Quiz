@@ -18,7 +18,7 @@ function displayQuestions(currentQuestion){
     questionsdiv.setAttribute("class","start");
     timeSpan.textContent = timer;
     getQuestions();
-    
+    countdown();
     
 }
 
@@ -71,6 +71,20 @@ function gameOver(){
     questionsdiv.setAttribute("class","hide");
     endScreen.setAttribute("class","start");
 }
+
+function countdown() {
+  
+    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+    var timeInterval = setInterval(function () {
+      timer--;
+      timeSpan.textContent = (timer>1 ? `${timer} seconds remaining` : `${timer} second remaining`);
+      if (timer == 0){
+        timeSpan.textContent = '';
+        clearInterval(timeInterval);
+        gameOver();
+      }
+    }, 1000);
+  }
 
 //() avoids having the function executed on pageLoad
 startButton.addEventListener("click",() => displayQuestions());
