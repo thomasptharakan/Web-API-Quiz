@@ -6,11 +6,13 @@ var timeSpan = document.querySelector("#time");
 var endScreen = document.querySelector("#end-screen");
 var answerBarLine = document.querySelector('#answerBarLine')
 var answerStatus = document.querySelector('#answerStatus');
+var finalScore = document.querySelector("#final-score");
+var submitScore =document.querySelector('#submit');
 
 var currentQuestionIndex = 0;
 var timer=80;
 var score=0;
-
+var endGame = false;
 
 function displayQuestions(currentQuestion){
     alert('in here');
@@ -54,7 +56,7 @@ function handleClick(){
         //Increment Score and return to next question
         answerStatus.textContent = 'Correct';
     }else{
-        timer = timer - 20;
+        timer = (timer>21? timer = timer - 20 : timer = 0);
         answerStatus.textContent = 'Wrong';
     }
     
@@ -62,6 +64,7 @@ function handleClick(){
         getQuestions();
     }else{
         alert('Game Over');
+        endGame = true;
         gameOver();
     }
     
@@ -70,21 +73,33 @@ function handleClick(){
 function gameOver(){
     questionsdiv.setAttribute("class","hide");
     endScreen.setAttribute("class","start");
+    timer=( timer<0 ?0 : timer);
+    finalScore.textContent = timer;
+
 }
 
 function countdown() {
-  
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
-      timer--;
-      timeSpan.textContent = (timer>1 ? `${timer} seconds remaining` : `${timer} second remaining`);
-      if (timer == 0){
-        timeSpan.textContent = '';
+      if (timer>0){
+        timer--;
+      }
+      timeSpan.textContent = timer;
+      if ((timer < 1)||(endGame)){
         clearInterval(timeInterval);
         gameOver();
       }
     }, 1000);
-  }
+}
+
+function submitScores(){
+    var initial = document.querySelector('#initials').textContent;
+    alert(initial);
+    localStorage.setItem(initial,timer);
+    window.location.href = "highscores.html";
+}
+
 
 //() avoids having the function executed on pageLoad
 startButton.addEventListener("click",() => displayQuestions());
+submitScore.addEventListener("click",()=> submitScores());
