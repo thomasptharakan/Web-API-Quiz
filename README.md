@@ -6,7 +6,7 @@ This repository ("Web-API-Quiz") contains the code for showcasing some basic htm
 
 The Website is built using html,css and javascript
 
-Link to hosted site : https://thomasptharakan.github.io/TBC/
+Link to hosted site :https://thomasptharakan.github.io/Web-API-Quiz/
 
 
 
