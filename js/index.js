@@ -1,3 +1,4 @@
+//Declare pointers to the the key elements
 var questionsdiv = document.querySelector("#questions");
 var startScreen = document.querySelector("#start-screen");
 var startButton = document.querySelector("#start");
@@ -9,13 +10,14 @@ var answerStatus = document.querySelector('#answerStatus');
 var finalScore = document.querySelector("#final-score");
 var submitScore =document.querySelector('#submit');
 
+//Define counter, timer, score and endgame variables.
 var currentQuestionIndex = 0;
 var timer=80;
 var score=0;
 var endGame = false;
 
+//Displays the questions and hides the start screen
 function displayQuestions(currentQuestion){
-    alert('in here');
     startScreen.setAttribute("class","hide");
     questionsdiv.setAttribute("class","start");
     timeSpan.textContent = timer;
@@ -24,7 +26,7 @@ function displayQuestions(currentQuestion){
     
 }
 
-
+//Controls the display of the current question and options
 function getQuestions(){
     var currentQuestion = questions[currentQuestionIndex];
     console.log(currentQuestion);
@@ -38,6 +40,7 @@ function getQuestions(){
     }
 }
 
+//Check answers and allocates points
 function handleClick(){
     //Get Current choice
     var choice = this.textContent;
@@ -70,6 +73,7 @@ function handleClick(){
     
 }
 
+//Handles games over conditions
 function gameOver(){
     questionsdiv.setAttribute("class","hide");
     endScreen.setAttribute("class","start");
@@ -78,6 +82,8 @@ function gameOver(){
 
 }
 
+
+//Countdown timer
 function countdown() {
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function () {
@@ -92,14 +98,14 @@ function countdown() {
     }, 1000);
 }
 
+//Storing scores and initials to Local storage.
 function submitScores(){
-    var initial = document.querySelector('#initials').textContent;
-    alert(initial);
+    var initial = document.querySelector('#initials').value;
     localStorage.setItem(initial,timer);
     window.location.href = "highscores.html";
 }
 
-
+//adding listeners to the buttons
 //() avoids having the function executed on pageLoad
 startButton.addEventListener("click",() => displayQuestions());
 submitScore.addEventListener("click",()=> submitScores());
